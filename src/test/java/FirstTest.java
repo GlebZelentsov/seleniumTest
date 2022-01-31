@@ -1,4 +1,5 @@
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Test;
@@ -10,7 +11,9 @@ import static com.codeborne.selenide.Selenide.open;
 public class FirstTest {
     @Test
     public void fistTest(){
+
         WebDriverManager.chromedriver().setup();
+
 
         Selenide.open("https://next.privat24.ua/money-transfer/card");
         Selenide.$(By.cssSelector("input[data-qa-node=\'numberdebitSource\']")).sendKeys("4552331448138217");
@@ -22,8 +25,9 @@ public class FirstTest {
         Selenide.$(By.cssSelector("button[data-qa-value=\'USD\']")).sendKeys(Keys.ENTER);
         Selenide.$(By.cssSelector("button[type=\'submit\']")).sendKeys(Keys.ENTER);
         Selenide.$(By.cssSelector("div[data-qa-node=\'total\']")).shouldHave(Condition.text("Разом до списання"));
-
-
+        Selenide.$(By.cssSelector("button[type=\'submit\']")).sendKeys(Keys.ENTER);
+        Selenide.$(By.cssSelector("td[data-qa-node=\'card\';]")).shouldHave(Condition.text("4552 **** **** 8217"));
+        Selenide.$(By.cssSelector("span[data-qa-node=\'c\';]")).shouldHave(Condition.text("4004 **** **** 9003"));
 
 
 
